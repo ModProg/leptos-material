@@ -2,6 +2,9 @@ name: Showcase
 
 on: [push]
 
+permissions:
+  contents: write
+
 jobs:
   showcase:
     runs-on: ubuntu-latest
