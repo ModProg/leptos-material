@@ -16,6 +16,7 @@ jobs:
             ~/.cargo/git/db/
             target/
             examples/showcase/target
+          key: key
       - uses: hecrj/setup-rust-action@v1
         with:
           rust-version: nightly
