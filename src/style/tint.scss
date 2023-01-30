@@ -1,0 +1,23 @@
+@use 'util' as *;
+// TODO: synchronize
+$duration: 280ms;
+$easing: cubic-bezier(0.2, 0, 0, 1);
+
+@mixin tinted {
+    transition-property: opacity;
+    transition-duration: $duration;
+    transition-timing-function: $easing;
+    border-radius: inherit;
+    content: '';
+    inset: 0;
+    position: absolute;
+    z-index: -1;
+}
+
+@mixin state {
+    &:before {
+        @include tinted;
+        background-color: RGB(md(state-color));
+        opacity: md(state-opacity);
+    }
+}

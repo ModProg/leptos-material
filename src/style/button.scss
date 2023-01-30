@@ -1,0 +1,130 @@
+@use 'util' as *;
+@use 'dom';
+@use 'font';
+@use 'elevation';
+@use 'tint';
+@use 'outline';
+
+$height: 40px;
+$min_width: 64px;
+$icon_gap: 8px;
+$text_padding: 24px;
+$icon_padding: 16px;
+
+button,
+.button {
+    @include font.large_label;
+    @include tint.state;
+
+    // When we have ripple, restore active opacity to 12%
+    @include set(
+        (
+            hover-state-opacity: 8%,
+            focus-state-opacity: 12%,
+            active-state-opacity: 20%,
+        )
+    );
+
+    cursor: pointer;
+
+    // TODO: investigate this aliasing
+    margin-inline: 6px;
+    &:first-child{
+        margin-inline-start: 0;
+    }
+    &:last-child{
+        margin-inline-end: 0;
+    }
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-inline-size: $min_width;
+    border: none;
+    outline: none;
+    user-select: none;
+    vertical-align: middle;
+    inline-size: 100%;
+    position: relative;
+    z-index: 0; // Place content on top of elevation and ripple
+    block-size: $height;
+    padding-inline: $text_padding;
+    gap: $icon_gap;
+    border-radius: calc($height / 2);
+
+    &::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+
+    &:disabled {
+        cursor: default;
+    }
+
+    @media (forced-colors: active) {
+        &::before {
+            @include dom.transparent-border();
+        }
+    }
+
+    .ripple {
+        z-index: -1;
+    }
+
+    &.elevated,
+    &.filled,
+    &.tonal {
+        @include elevation.elevated;
+        @include color(on-surface, on-surface, disabled, 12%, 38%);
+        @include set(
+            (
+                hover-elevation: calc(md(normal-elevation) + 1),
+            )
+        );
+    }
+
+    &.elevated,
+    &.outlined,
+    &.text {
+        @include alias(
+            (
+                state-color: theme-primary,
+            )
+        );
+    }
+
+    &.elevated {
+        @include color(surface, primary);
+        @include set(
+            (
+                normal-elevation: 1,
+            )
+        );
+    }
+    &.filled {
+        @include color(primary, on-primary);
+        @include alias(
+            (
+                state-color: theme-on-primary,
+            )
+        );
+    }
+    &.tonal {
+        @include color(secondary-container, on-secondary-container);
+        @include alias(
+            (
+                state-color: theme-on-secondary-container,
+            )
+        );
+    }
+    &.outlined {
+        @include outline.color(outline, primary);
+        @include outline.color(on-surface, on-surface, disabled, 12%, 38%);
+        @include outline.outlined;
+    }
+    &.text {
+        @include color(transparent, primary);
+        @include color(transparent, on-surface, disabled, 12%, 38%);
+    }
+}

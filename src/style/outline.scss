@@ -1,0 +1,27 @@
+@use 'util' as *;
+
+@mixin outlined {
+    outline-width: 1px;
+    outline-style: solid;
+}
+
+@mixin color(
+    $outline_color,
+    $text_color,
+    $state: normal,
+    $outline_opacity: 1,
+    $text_opacity: 1
+) {
+    @include alias(
+        (
+            $state + -outline-color: theme- + $outline_color,
+            $state + -text-color: theme- + $text_color
+        )
+    );
+    @include set(
+        (
+            $state + -outline-opacity: $outline_opacity,
+            $state + -text-opacity: $text_opacity
+        )
+    );
+}

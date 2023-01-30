@@ -1,0 +1,26 @@
+@use 'util' as *;
+
+$family: Roboto, sans-serif;
+$weight_bold: 700;
+$weight_medium: 500;
+$weight_regular: 400;
+
+@mixin values($family, $weight, $height, $size, $tracking) {
+    @include set(
+        (
+            font-family: $family,
+            font-weight: $weight,
+            line-height: $height,
+            font-size: $size,
+            letter-spacing: $tracking,
+        )
+    );
+}
+
+@mixin large_label {
+    @include values($family, $weight_medium, 1.25rem, 0.875rem, 0.006rem);
+}
+
+@mixin medium_body {
+    @include values($family, $weight_regular, 1.25rem, 0.875rem, 0.016rem);
+}

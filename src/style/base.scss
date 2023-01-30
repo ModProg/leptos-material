@@ -1,0 +1,104 @@
+@use 'util' as *;
+@use 'font';
+
+:root {
+    @include alias(
+        (
+            tint: theme-primary,
+        )
+    );
+    @include set(
+        (
+            padding: 16px,
+            background: transparent,
+            color: inherit,
+        )
+    );
+}
+
+* {
+    @include assign(
+        (
+            font-family: font-family,
+            font-weight: font-weight,
+            font-size: font-size,
+            letter-spacing: letter-spacing,
+            line-height: line-height,
+        )
+    );
+    @include set(
+        (
+            normal-elevation: 0,
+            normal-state-opacity: 0,
+        )
+    );
+    @include alias(
+        (
+            elevation: normal-elevation,
+            state-opacity: normal-state-opacity,
+            text-color: normal-text-color,
+            background-color: normal-background-color,
+            outline-color: normal-outline-color,
+            text-opacity: normal-text-opacity,
+            background-opacity: normal-background-opacity,
+            outline-opacity: normal-outline-opacity,
+        )
+    );
+    color: RGB(md(text-color) / md(text-opacity));
+    background-color: RGB(md(background-color) / md(background-opacity));
+    outline-color: RGB(md(outline-color) / md(outline-opacity));
+}
+
+@each $pseudo in (disabled, focus-visible, hover, active) {
+    * {
+        @include alias(
+            (
+                $pseudo + -state-opacity: normal-state-opacity,
+                $pseudo + -background-color: normal-background-color,
+                $pseudo + -background-opacity: normal-background-opacity,
+                $pseudo + -text-color: normal-text-color,
+                $pseudo + -text-opacity: normal-text-opacity,
+                $pseudo + -outline-color: normal-outline-color,
+                $pseudo + -outline-opacity: normal-outline-opacity,
+                $pseudo + -elevation: normal-elevation
+            )
+        );
+    }
+    $not: '';
+    @if $pseudo != disabled {
+        $not: ':not(:disabled)';
+    }
+
+    *:#{$pseudo + unquote($not)} {
+        @include alias(
+            (
+                state-opacity: $pseudo + -state-opacity,
+                background-color: $pseudo + -background-color,
+                background-opacity: $pseudo + -background-opacity,
+                text-color: $pseudo + -text-color,
+                text-opacity: $pseudo + -text-opacity,
+                outline-color: $pseudo + -outline-color,
+                outline-opacity: $pseudo + -outline-opacity,
+                elevation: $pseudo + -elevation,
+            )
+        );
+    }
+}
+* {
+    @include set(
+        (
+            disabled-elevation: 0,
+        )
+    );
+}
+
+body {
+    @include font.medium_body;
+    margin: md(padding);
+    @include color(background);
+}
+
+@font-face {
+    font-family: Roboto;
+    src: url(public/roboto_flex.ttf);
+}
