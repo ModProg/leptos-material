@@ -1,12 +1,25 @@
 name: Showcase
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
 
 jobs:
   showcase:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -29,13 +42,9 @@ jobs:
       - name: Build Showcase
         working-directory: examples/showcase
         run: trunk build
-      - name: Deploy
-        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/release' || startsWith(github.ref, 'refs/tags/')
-        uses: JamesIves/github-pages-deploy-action@releases/v4
+      - uses: actions/upload-pages-artifact@v1
         with:
-          branch: gh-pages
-          folder: examples/showcase/dist
-          git-config-name: MotBotProg
-          git-config-email: dev@modprog.de
-          target-folder: /${{ github.ref_name }}/showcase
-          clean: true
+          # Upload entire repository
+          path: 'examples/showcase/dist'
+      - id: deployment
+        uses: actions/deploy-pages@v1
