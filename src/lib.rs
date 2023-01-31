@@ -44,7 +44,7 @@ pub fn MaterialStyle(cx: Scope) -> impl IntoView {
     view! {
         cx,
         <style>
-            // {include_scss!("src/style/mod.scss")}
+            {include_scss!("src/style/mod.scss")}
         </style>
     }
 }
