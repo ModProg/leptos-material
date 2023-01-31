@@ -4,26 +4,24 @@
 //! scenario, include the follwoing css in your [`<head>`]:
 //! ```html
 //! <style>
-#![doc = include_scss!("src/style/static.scss")]
+#![doc = grass::include!("src/style/static.scss")]
 //! </style>
 //! ```
 //! You can also include the full generated css, though keep in mind that you will need to manually
 //! update it when a new version of leptos-material changes it (currently very likely), but it
 //! actually enables to use the css without leptos (see the [`github-pages-index`] example).
 //! ```css
-#![doc = include_scss!("src/style/mod.scss")]
+#![doc = grass::include!("src/style/mod.scss")]
 //! ```
 //! [`<head>`]: https://developer.mozilla.org/docs/Web/HTML/Element/head
 //! [`github-pages-index`]: https://github.com/ModProg/leptos-material/tree/main/examples/github-pages-index
 use bytemuck::cast;
-use const_str::replace;
 use leptos::*;
 use material_color_utilities_rs::palettes::core::CorePalette;
 use material_color_utilities_rs::palettes::tonal::TonalPalette;
 use material_color_utilities_rs::scheme::Scheme;
 use rgb::alt::ARGB8;
 use rgb::RGB8;
-use rsass_macros::include_scss;
 
 #[macro_use]
 mod macros;
@@ -44,7 +42,7 @@ pub fn MaterialStyle(cx: Scope) -> impl IntoView {
     view! {
         cx,
         <style>
-            {include_scss!("src/style/mod.scss")}
+            {grass::include!("src/style/mod.scss")}
         </style>
     }
 }

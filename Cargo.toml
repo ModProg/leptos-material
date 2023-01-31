@@ -12,12 +12,13 @@ documentation = "https://docs.rs/leptos-material"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+bytemuck = "1.13.0"
+const-str = "0.5.3"
+derive_more = "0.99.17"
 getrandom = { version = "0.2.8", features = ["js"] }
+# grass = { version = "0.12.1", default-features = false, features = ["macro", "nightly"] }
+grass = { git = "https://github.com/ModProg/grass", default-features = false, features = ["macro", "nightly"] }
 leptos = { version = "0.1.1", default-features = false }
 material-color-utilities-rs = "0.2.0"
 palette = "0.6.1"
-rsass-macros = "0.27.0"
 rgb = { version = "0.8.34", features = ["argb"] }
-bytemuck = "1.13.0"
-derive_more = "0.99.17"
-const-str = "0.5.3"

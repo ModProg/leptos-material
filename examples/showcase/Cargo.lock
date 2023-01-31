@@ -50,12 +50,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "arc-swap"
-version = "1.6.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "bddcadddf5e9015d310179a59bb28c4d4b9920ad0f11e8e14dbadf654890c9a6"
-
-[[package]]
 name = "async-trait"
 version = "0.1.63"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -168,6 +162,12 @@ dependencies = [
  "ciborium-io",
  "half",
 ]
+
+[[package]]
+name = "codemap"
+version = "0.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b9e769b5c8c8283982a987c6e948e540254f1058d5a74b8794914d4ef5fc2a24"
 
 [[package]]
 name = "components"
@@ -336,15 +336,6 @@ dependencies = [
  "quote",
  "rustc_version",
  "syn",
-]
-
-[[package]]
-name = "fastrand"
-version = "1.8.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a7a407cfaa3385c4ae6b23e84623d48c2798d06e3e6a1878f7f59f17b3f86499"
-dependencies = [
- "instant",
 ]
 
 [[package]]
@@ -673,10 +664,41 @@ dependencies = [
 ]
 
 [[package]]
+name = "grass"
+version = "0.12.1"
+source = "git+https://github.com/ModProg/grass#a214c62f7e2bec00949b88a6c818df602fedb43b"
+dependencies = [
+ "grass_compiler",
+ "include_sass",
+]
+
+[[package]]
+name = "grass_compiler"
+version = "0.12.1"
+source = "git+https://github.com/ModProg/grass#a214c62f7e2bec00949b88a6c818df602fedb43b"
+dependencies = [
+ "codemap",
+ "indexmap",
+ "lasso",
+ "once_cell",
+ "phf 0.10.1",
+ "rand",
+]
+
+[[package]]
 name = "half"
 version = "1.8.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "eabb4a44450da02c90444cf74558da904edde8fb4e9035a9a6a4e15445af0bd7"
+
+[[package]]
+name = "hashbrown"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
+dependencies = [
+ "ahash 0.7.6",
+]
 
 [[package]]
 name = "hashbrown"
@@ -706,22 +728,23 @@ dependencies = [
 ]
 
 [[package]]
+name = "include_sass"
+version = "0.12.1"
+source = "git+https://github.com/ModProg/grass#a214c62f7e2bec00949b88a6c818df602fedb43b"
+dependencies = [
+ "grass_compiler",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "indexmap"
 version = "1.9.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "1885e79c1fc4b10f0e172c475f458b7f7b93061064d98c3293e98c5ba0c8b399"
 dependencies = [
  "autocfg",
- "hashbrown",
-]
-
-[[package]]
-name = "instant"
-version = "0.1.12"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7a5bbe824c507c5da5956355e86a746d82e0e1464f65d862cc5e71da70e94b2c"
-dependencies = [
- "cfg-if",
+ "hashbrown 0.12.3",
 ]
 
 [[package]]
@@ -769,6 +792,15 @@ dependencies = [
 ]
 
 [[package]]
+name = "lasso"
+version = "0.6.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "aeb7b21a526375c5ca55f1a6dfd4e1fad9fa4edd750f530252a718a44b2608f0"
+dependencies = [
+ "hashbrown 0.11.2",
+]
+
+[[package]]
 name = "lazy_static"
 version = "1.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -798,11 +830,11 @@ dependencies = [
  "const-str",
  "derive_more",
  "getrandom",
+ "grass",
  "leptos",
  "material-color-utilities-rs",
  "palette",
  "rgb",
- "rsass-macros",
 ]
 
 [[package]]
@@ -1072,7 +1104,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "ccd746e37177e1711c20dd619a1620f34f5c8b569c53590a72dedd5344d8924a"
 dependencies = [
  "dlv-list",
- "hashbrown",
+ "hashbrown 0.12.3",
 ]
 
 [[package]]
@@ -1090,7 +1122,7 @@ dependencies = [
  "approx",
  "num-traits",
  "palette_derive",
- "phf",
+ "phf 0.11.1",
 ]
 
 [[package]]
@@ -1169,12 +1201,33 @@ dependencies = [
 
 [[package]]
 name = "phf"
+version = "0.10.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "fabbf1ead8a5bcbc20f5f8b939ee3f5b0f6f281b6ad3468b84656b658b455259"
+dependencies = [
+ "phf_macros 0.10.0",
+ "phf_shared 0.10.0",
+ "proc-macro-hack",
+]
+
+[[package]]
+name = "phf"
 version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "928c6535de93548188ef63bb7c4036bd415cd8f36ad25af44b9789b2ee72a48c"
 dependencies = [
- "phf_macros",
- "phf_shared",
+ "phf_macros 0.11.1",
+ "phf_shared 0.11.1",
+]
+
+[[package]]
+name = "phf_generator"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5d5285893bb5eb82e6aaf5d59ee909a06a16737a8970984dd7746ba9283498d6"
+dependencies = [
+ "phf_shared 0.10.0",
+ "rand",
 ]
 
 [[package]]
@@ -1183,8 +1236,22 @@ version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b1181c94580fa345f50f19d738aaa39c0ed30a600d95cb2d3e23f94266f14fbf"
 dependencies = [
- "phf_shared",
+ "phf_shared 0.11.1",
  "rand",
+]
+
+[[package]]
+name = "phf_macros"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "58fdf3184dd560f160dd73922bea2d5cd6e8f064bf4b13110abd81b03697b4e0"
+dependencies = [
+ "phf_generator 0.10.0",
+ "phf_shared 0.10.0",
+ "proc-macro-hack",
+ "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]
@@ -1193,11 +1260,20 @@ version = "0.11.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "92aacdc5f16768709a569e913f7451034034178b05bdc8acda226659a3dccc66"
 dependencies = [
- "phf_generator",
- "phf_shared",
+ "phf_generator 0.11.1",
+ "phf_shared 0.11.1",
  "proc-macro2",
  "quote",
  "syn",
+]
+
+[[package]]
+name = "phf_shared"
+version = "0.10.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b6796ad771acdc0123d2a88dc428b5e38ef24456743ddb1744ed628f9815c096"
+dependencies = [
+ "siphasher",
 ]
 
 [[package]]
@@ -1280,6 +1356,12 @@ dependencies = [
  "quote",
  "version_check",
 ]
+
+[[package]]
+name = "proc-macro-hack"
+version = "0.5.20+deprecated"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc375e1527247fe1a97d8b7156678dfe7c1af2fc075c9a4db3690ecd2a148068"
 
 [[package]]
 name = "proc-macro2"
@@ -1386,35 +1468,6 @@ dependencies = [
  "base64 0.13.1",
  "bitflags",
  "serde",
-]
-
-[[package]]
-name = "rsass"
-version = "0.27.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "a43695dd28122f6c684273de89796a56a98e02e9694b8ab57b160fdc6e6d69af"
-dependencies = [
- "arc-swap",
- "fastrand",
- "lazy_static",
- "nom",
- "num-bigint",
- "num-integer",
- "num-rational",
- "num-traits",
- "tracing",
-]
-
-[[package]]
-name = "rsass-macros"
-version = "0.27.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5f05963af22a282f0b1c4316bf36b83681f1da744790fb850fa553544c935942"
-dependencies = [
- "proc-macro2",
- "quote",
- "rsass",
- "syn",
 ]
 
 [[package]]
