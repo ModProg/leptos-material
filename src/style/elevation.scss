@@ -11,6 +11,9 @@ $easing: cubic-bezier(0.2, 0, 0, 1);
     transition-duration: $duration;
     transition-timing-function: $easing;
 
+    // To align ::after
+    position: relative;
+
     // Key box shadows
     // level0: box-shadow: 0px 0px 0px 0px;
     // level1: box-shadow: 0px 1px 2px 0px;

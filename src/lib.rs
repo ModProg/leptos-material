@@ -18,6 +18,10 @@ pub use button::*;
 
 type Children = Box<dyn FnOnce(Scope) -> Fragment>;
 
+fn optional(cx: Scope, children: Option<Children>) -> impl IntoView {
+    children.map(|c| c(cx))
+}
+
 #[component]
 pub fn MaterialStyle(cx: Scope) -> impl IntoView {
     view! {

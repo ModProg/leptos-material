@@ -20,3 +20,4 @@ rsass-macros = "0.27.0"
 rgb = { version = "0.8.34", features = ["argb"] }
 bytemuck = "1.13.0"
 derive_more = "0.99.17"
+const-str = "0.5.3"

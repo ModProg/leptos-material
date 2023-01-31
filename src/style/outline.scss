@@ -6,8 +6,8 @@
 }
 
 @mixin color(
-    $outline_color,
-    $text_color,
+    $outline_color: outline,
+    $text_color: on-surface,
     $state: normal,
     $outline_opacity: 1,
     $text_opacity: 1

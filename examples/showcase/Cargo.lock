@@ -226,6 +226,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "const-str"
+version = "0.5.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a5bc011a04793b8ce7bca0efd59e3697c2061760df6efbb8c895e8a81548db67"
+
+[[package]]
 name = "convert_case"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -789,6 +795,7 @@ name = "leptos-material"
 version = "0.1.0"
 dependencies = [
  "bytemuck",
+ "const-str",
  "derive_more",
  "getrandom",
  "leptos",

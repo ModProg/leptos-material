@@ -1,6 +1,7 @@
 @use 'util' as *;
 
 $family: Roboto, sans-serif;
+$brand: $family;
 $weight_bold: 700;
 $weight_medium: 500;
 $weight_regular: 400;
@@ -15,6 +16,14 @@ $weight_regular: 400;
             letter-spacing: $tracking,
         )
     );
+}
+
+@mixin medium_title {
+    @include values($family, $weight_medium, 1.5rem, 1rem, 0.009rem);
+}
+
+@mixin medium_headline {
+    @include values($brand, $weight_regular, 2.25rem, 1.75rem, 0rem);
 }
 
 @mixin large_label {

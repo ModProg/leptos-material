@@ -1,0 +1,67 @@
+@use 'elevation';
+@use 'font';
+@use 'outline';
+@use 'util' as *;
+
+.card {
+    border-radius: 12px;
+    padding: 16px;
+    z-index: 0; // Place content on top of elevation and ripple
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    // TODO: gap: 8px
+
+    // TODO: handle multiple h*
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @include font.medium_headline;
+        margin: 0;
+    }
+    hgroup p {
+        margin: 0;
+        @include font.medium_title;
+    }
+
+    img {
+        width: calc(100% + 32px);
+        margin-inline: -16px;
+    }
+
+    img:first-child {
+        margin-top: -16px;
+        border-radius: 12px;
+    }
+
+    // TODO: implement interactivity (https://m3.material.io/components/cards/specs)
+    &.elevated {
+        @include elevation.elevated;
+        @include color(surface);
+        @include set(
+            (
+                normal-elevation: 1,
+            )
+        );
+    }
+    &.filled {
+        @include color(surface-variant);
+    }
+    &.outlined {
+        @include outline.outlined;
+        @include outline.color;
+    }
+
+    .actions {
+        margin-top: auto;
+        display: flex;
+        justify-content: right;
+
+        button {
+            max-width: max-content;
+        }
+    }
+}
