@@ -46,7 +46,7 @@ button,
     user-select: none;
     vertical-align: middle;
     // TODO: inline-size: 100%;
-    flex-grow: 1;
+    flex: 1;
     position: relative;
     z-index: 0; // Place content on top of elevation and ripple
     block-size: $height;
