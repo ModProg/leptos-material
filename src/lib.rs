@@ -49,6 +49,7 @@ macro_rules! set_if_some {
 #[component]
 pub fn MaterialColors(
     cx: Scope,
+    /// [`RGB8`]
     #[prop(into)] primary: RGB8,
     #[prop(optional, into)] secondary: Option<RGB8>,
     #[prop(optional, into)] tertiary: Option<RGB8>,
