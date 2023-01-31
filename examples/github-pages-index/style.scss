@@ -1,0 +1,66 @@
+@use "../../src/style/mod.scss";
+
+:root {
+    --md-theme-primary: 103 80 164;
+    --md-theme-on-primary: 255 255 255;
+    --md-theme-primary-container: 233 221 255;
+    --md-theme-on-primary-container: 34 0 93;
+    --md-theme-secondary: 98 91 112;
+    --md-theme-on-secondary: 255 255 255;
+    --md-theme-secondary-container: 232 222 248;
+    --md-theme-on-secondary-container: 30 25 43;
+    --md-theme-tertiary: 125 82 96;
+    --md-theme-on-tertiary: 255 255 255;
+    --md-theme-tertiary-container: 255 217 227;
+    --md-theme-on-tertiary-container: 49 17 29;
+    --md-theme-error: 186 26 26;
+    --md-theme-on-error: 255 255 255;
+    --md-theme-error-container: 255 218 214;
+    --md-theme-on-error-container: 65 0 2;
+    --md-theme-background: 255 251 255;
+    --md-theme-on-background: 28 27 30;
+    --md-theme-surface: 255 251 255;
+    --md-theme-on-surface: 28 27 30;
+    --md-theme-surface-variant: 231 224 235;
+    --md-theme-on-surface-variant: 73 69 78;
+    --md-theme-outline: 122 117 127;
+    --md-theme-outline-variant: 202 196 207;
+    --md-theme-shadow: 0 0 0;
+    --md-theme-scrim: 0 0 0;
+    --md-theme-inverse-surface: 49 48 51;
+    --md-theme-inverse-on-surface: 244 239 244;
+    --md-theme-inverse-primary: 207 188 255;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --md-theme-primary: 207 188 255;
+        --md-theme-on-primary: 56 30 114;
+        --md-theme-primary-container: 79 55 138;
+        --md-theme-on-primary-container: 233 221 255;
+        --md-theme-secondary: 203 194 219;
+        --md-theme-on-secondary: 51 45 65;
+        --md-theme-secondary-container: 74 68 88;
+        --md-theme-on-secondary-container: 232 222 248;
+        --md-theme-tertiary: 239 184 200;
+        --md-theme-on-tertiary: 74 37 50;
+        --md-theme-tertiary-container: 99 59 72;
+        --md-theme-on-tertiary-container: 255 217 227;
+        --md-theme-error: 255 180 171;
+        --md-theme-on-error: 105 0 5;
+        --md-theme-error-container: 147 0 10;
+        --md-theme-on-error-container: 255 180 171;
+        --md-theme-background: 28 27 30;
+        --md-theme-on-background: 230 225 230;
+        --md-theme-surface: 28 27 30;
+        --md-theme-on-surface: 230 225 230;
+        --md-theme-surface-variant: 73 69 78;
+        --md-theme-on-surface-variant: 202 196 207;
+        --md-theme-outline: 148 143 153;
+        --md-theme-outline-variant: 73 69 78;
+        --md-theme-shadow: 0 0 0;
+        --md-theme-scrim: 0 0 0;
+        --md-theme-inverse-surface: 230 225 230;
+        --md-theme-inverse-on-surface: 49 48 51;
+        --md-theme-inverse-primary: 103 80 164;
+    }
+}

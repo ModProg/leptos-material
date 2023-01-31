@@ -1,0 +1,28 @@
+@use 'util' as *;
+html {
+    @include set(
+        (
+            theme-background: #fffbff,
+            background-opacity: 1,
+        )
+    );
+    @include alias(
+        (
+            background: theme-background,
+        )
+    );
+    @include assign(
+        (
+            background: background,
+        )
+    );
+}
+@media (prefers-color-scheme: dark) {
+    html {
+        @include set(
+            (
+                theme-background: #1c1b1e,
+            )
+        );
+    }
+}

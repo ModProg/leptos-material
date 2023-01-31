@@ -1,5 +1,15 @@
 @use 'util' as *;
 @use 'font';
+@use 'static';
+
+// Reduce specificity
+:where(:root) {
+    @include set(
+        (
+            background: transparent,
+        )
+    );
+}
 
 :root {
     @include alias(
@@ -10,7 +20,6 @@
     @include set(
         (
             padding: 16px,
-            background: transparent,
             color: inherit,
         )
     );

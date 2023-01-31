@@ -1,5 +1,22 @@
 #![allow(unused_braces)]
+//! # Static CSS for initial style
+//! To have the correct background color before the JS/WASM is executed in a CSR
+//! scenario, include the follwoing css in your [`<head>`]:
+//! ```html
+//! <style>
+#![doc = include_scss!("src/style/static.scss")]
+//! </style>
+//! ```
+//! You can also include the full generated css, though keep in mind that you will need to manually
+//! update it when a new version of leptos-material changes it (currently very likely), but it
+//! actually enables to use the css without leptos (see the [`github-pages-index`] example).
+//! ```css
+#![doc = include_scss!("src/style/mod.scss")]
+//! ```
+//! [`<head>`]: https://developer.mozilla.org/docs/Web/HTML/Element/head
+//! [`github-pages-index`]: https://github.com/ModProg/leptos-material/tree/main/examples/github-pages-index
 use bytemuck::cast;
+use const_str::replace;
 use leptos::*;
 use material_color_utilities_rs::palettes::core::CorePalette;
 use material_color_utilities_rs::palettes::tonal::TonalPalette;
@@ -50,7 +67,8 @@ macro_rules! set_if_some {
 pub fn MaterialColors(
     cx: Scope,
     /// [`RGB8`]
-    #[prop(into)] primary: RGB8,
+    #[prop(into)]
+    primary: RGB8,
     #[prop(optional, into)] secondary: Option<RGB8>,
     #[prop(optional, into)] tertiary: Option<RGB8>,
     #[prop(optional, into)] error: Option<RGB8>,
