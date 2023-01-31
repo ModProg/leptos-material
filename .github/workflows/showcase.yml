@@ -27,6 +27,7 @@ jobs:
         with:
           path: |
             ~/.cargo/
+            ~/.rustup/
             target/
             examples/showcase/target
           key: 1
