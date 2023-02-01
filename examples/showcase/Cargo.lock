@@ -515,8 +515,9 @@ dependencies = [
 
 [[package]]
 name = "grass"
-version = "0.12.1"
-source = "git+https://github.com/ModProg/grass#6ba902ab1dfc93f97539b9566c01ffab7f6a3e2a"
+version = "0.12.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1bc8d495d643cc55c2f2f9437c5b9a493ea660dd75f7bbba76526c440b9c6d2c"
 dependencies = [
  "grass_compiler",
  "include_sass",
@@ -524,8 +525,9 @@ dependencies = [
 
 [[package]]
 name = "grass_compiler"
-version = "0.12.1"
-source = "git+https://github.com/ModProg/grass#6ba902ab1dfc93f97539b9566c01ffab7f6a3e2a"
+version = "0.12.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0b8adb5e6b31fe2ec6c94bd0d4d803de9ef4ea409cd75b2c4ad4db5c4a19d0ba"
 dependencies = [
  "codemap",
  "indexmap",
@@ -579,8 +581,9 @@ dependencies = [
 
 [[package]]
 name = "include_sass"
-version = "0.12.1"
-source = "git+https://github.com/ModProg/grass#6ba902ab1dfc93f97539b9566c01ffab7f6a3e2a"
+version = "0.12.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ed8d4414108a5437d95839fe18616e47d1e82a142376b0c3d0ea2275ffd53129"
 dependencies = [
  "grass_compiler",
  "quote",
