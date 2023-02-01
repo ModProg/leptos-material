@@ -19,18 +19,18 @@ pub fn main() {
                 <h1>"Components"</h1>
                 <h2>"Cards"</h2>
                 <div class="flex">
-                    <Card elevated=true>
+                    <Card>
                         <hgroup>
                             <h3>"Headline"</h3>
                             <p>"Subhead"</p>
                         </hgroup>
                         <p>"Elevated"</p>
                     </Card>
-                    <Card filled=true>
+                    <Card kind=CardKind::Filled>
                         <img src="public/example.jpg"/>
                         <p>"Filled"</p>
                     </Card>
-                    <Card outlined=true>
+                    <Card kind=CardKind::Outlined>
                         <p>"Outlined"</p>
                         <Actions>
                             <Button kind=ButtonKind::Outlined> "Action" </Button>
@@ -54,6 +54,13 @@ pub fn main() {
                     <Button disabled=true kind=ButtonKind::Tonal>"Tonal"</Button>
                     <Button disabled=true kind=ButtonKind::Outlined>"Outlined"</Button>
                     <Button disabled=true kind=ButtonKind::Text>"Text"</Button>
+                </div>
+                <h2>"Inputs"</h2>
+                <div class="flex">
+                    <Textfield/>
+                    <Textfield filled=true/>
+
+                    <Textfield label="With Label"/> <Textfield label="With Label" filled=true/>
                 </div>
             </div>
         }

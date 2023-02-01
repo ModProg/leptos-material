@@ -1,0 +1,74 @@
+@use 'util' as *;
+@use 'font';
+@use 'input';
+
+$height: 56px;
+$text_padding: 16px;
+$block_padding: 8px;
+$icon_padding: 12px;
+
+label,
+.pseudo-label {
+    @include input.sizing;
+    input + span {
+        @include font.small_body;
+        @include text_color(on-surface-variant);
+        @include text_color(primary, focus);
+        position: absolute;
+        left: $text_padding;
+        top: $block_padding;
+    }
+    input:focus + span {
+        @include alias(text-color, focus-text-color);
+    }
+
+}
+
+label {
+    input {
+        padding-top: calc($block_padding + font.$small_body_line_height);
+    }
+}
+
+input {
+    @include font.large_body;
+    @include input.shared($height, $text_padding, $icon_padding);
+
+    height: $height;
+    min-height: $height;
+    box-sizing: border-box;
+    padding-block: $block_padding;
+
+    &:not(.filled) {
+    }
+
+    // TODO:
+    // - leading icon 20px
+    // - label body_small
+    // - trailing icon 24px
+    // - supporting text small on-surface-variant
+    // - Placeholder/prefix/suffix: on-surface-variant
+
+    &.filled {
+        @include set(
+            (
+                active-indicator: 1px,
+                normal-outline-color: theme(on-surface-variant),
+                focus-outline-color: theme(primary),
+            )
+        );
+        border-color: RGB(md(outline-color));
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        border-bottom-style: solid;
+        border-bottom-width: md(active-indicator);
+        // border-bottom-color: theme_color(on-surface-variant);
+        caret-color: theme_color(primary);
+        @include color(surface-variant, on-surface);
+
+        &:focus-visible {
+            @include set(active-indicator, 2px);
+            outline: none;
+        }
+    }
+}

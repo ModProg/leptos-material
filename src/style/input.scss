@@ -1,0 +1,24 @@
+$min_width: 64px;
+$icon_gap: 8px;
+@mixin shared($height, $text_padding, $icon_padding) {
+    @include sizing;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    min-inline-size: $min_width;
+    border: none;
+    outline: none;
+    user-select: none;
+    vertical-align: middle;
+    z-index: 0; // Place content on top of elevation and ripple
+    block-size: $height;
+    min-height: $height;
+    padding-inline: $text_padding;
+    gap: $icon_gap;
+}
+@mixin sizing {
+    position: relative;
+    inline-size: 100%;
+    flex: 1;
+}

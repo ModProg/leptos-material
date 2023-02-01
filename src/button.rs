@@ -3,8 +3,9 @@ use leptos::*;
 
 use crate::Children;
 
-#[derive(Display)]
+#[derive(Display, Default)]
 pub enum ButtonKind {
+    #[default]
     #[display(fmt = "elevated")]
     Elevated,
     #[display(fmt = "filled")]

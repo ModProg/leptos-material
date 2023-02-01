@@ -4,6 +4,7 @@
 @use 'elevation';
 @use 'tint';
 @use 'outline';
+@use 'input';
 
 $height: 40px;
 $min_width: 64px;
@@ -11,10 +12,19 @@ $icon_gap: 8px;
 $text_padding: 24px;
 $icon_padding: 16px;
 
+label {
+    @include input.sizing;
+    input + span {
+
+    }
+}
+
 button,
 .button {
     @include font.large_label;
     @include tint.state;
+    @include input.shared($height, $text_padding, $icon_padding);
+
 
     // When we have ripple, restore active opacity to 12%
     @include set(
@@ -34,24 +44,8 @@ button,
     // &:last-child{
     //     margin-inline-end: 0;
     // }
-
-    display: inline-flex;
     text-decoration: none;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    min-inline-size: $min_width;
-    border: none;
-    outline: none;
-    user-select: none;
-    vertical-align: middle;
-    // TODO: inline-size: 100%;
-    flex: 1;
-    position: relative;
-    z-index: 0; // Place content on top of elevation and ripple
-    block-size: $height;
-    padding-inline: $text_padding;
-    gap: $icon_gap;
+
     border-radius: calc($height / 2);
 
     &::-moz-focus-inner {

@@ -56,21 +56,29 @@
     );
     color: RGB(md(text-color) / md(text-opacity));
     background-color: RGB(md(background-color) / md(background-opacity));
-    outline-color: RGB(md(outline-color) / md(outline-opacity));
+    border-color: RGB(md(outline-color) / md(outline-opacity));
 }
 
-@each $pseudo in (disabled, focus-visible, hover, active) {
+@each $pseudo,
+    $internal
+        in (
+            disabled: disabled,
+            hover: hover,
+            focus-visible: focus,
+            active: active
+        )
+{
     * {
         @include alias(
             (
-                $pseudo + -state-opacity: normal-state-opacity,
-                $pseudo + -background-color: normal-background-color,
-                $pseudo + -background-opacity: normal-background-opacity,
-                $pseudo + -text-color: normal-text-color,
-                $pseudo + -text-opacity: normal-text-opacity,
-                $pseudo + -outline-color: normal-outline-color,
-                $pseudo + -outline-opacity: normal-outline-opacity,
-                $pseudo + -elevation: normal-elevation
+                $internal + -state-opacity: normal-state-opacity,
+                $internal + -background-color: normal-background-color,
+                $internal + -background-opacity: normal-background-opacity,
+                $internal + -text-color: normal-text-color,
+                $internal + -text-opacity: normal-text-opacity,
+                $internal + -outline-color: normal-outline-color,
+                $internal + -outline-opacity: normal-outline-opacity,
+                $internal + -elevation: normal-elevation
             )
         );
     }
@@ -82,14 +90,14 @@
     *:#{$pseudo + unquote($not)} {
         @include alias(
             (
-                state-opacity: $pseudo + -state-opacity,
-                background-color: $pseudo + -background-color,
-                background-opacity: $pseudo + -background-opacity,
-                text-color: $pseudo + -text-color,
-                text-opacity: $pseudo + -text-opacity,
-                outline-color: $pseudo + -outline-color,
-                outline-opacity: $pseudo + -outline-opacity,
-                elevation: $pseudo + -elevation,
+                state-opacity: $internal + -state-opacity,
+                background-color: $internal + -background-color,
+                background-opacity: $internal + -background-opacity,
+                text-color: $internal + -text-color,
+                text-opacity: $internal + -text-opacity,
+                outline-color: $internal + -outline-color,
+                outline-opacity: $internal + -outline-opacity,
+                elevation: $internal + -elevation,
             )
         );
     }

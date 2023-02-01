@@ -4,14 +4,25 @@
 @function theme($token) {
     @return var(mdn('theme-' + $token));
 }
+@function theme_color($token) {
+    @return RGB(var(mdn('theme-' + $token)));
+}
 
 @function mdn($token) {
     @return --md- + $token;
 }
 
-@mixin alias($aliases) {
-    @each $a, $b in $aliases {
-        #{mdn($a)}: md($b);
+@mixin alias($aliases, $second: false) {
+    @if $second {
+        @include alias(
+            (
+                $aliases: $second,
+            )
+        );
+    } @else {
+        @each $a, $b in $aliases {
+            #{mdn($a)}: md($b);
+        }
     }
 }
 
@@ -21,10 +32,19 @@
     }
 }
 
-@mixin set($values) {
-    @each $a, $v in $values {
-        #{mdn($a)}: $v;
+@mixin set($values, $second: false) {
+    @if $second {
+        #{mdn($values)}: $second;
+    } @else {
+        @each $a, $v in $values {
+            #{mdn($a)}: $v;
+        }
     }
+}
+
+@mixin text_color($text_color: on- + $name, $state: normal, $text_opacity: 1) {
+    @include alias(($state + -text-color: theme- + $text_color));
+    @include set(($state + -text-opacity: $text_opacity));
 }
 
 @mixin color(
@@ -34,16 +54,7 @@
     $background_opacity: 1,
     $text_opacity: 1
 ) {
-    @include alias(
-        (
-            $state + -background-color: theme- + $name,
-            $state + -text-color: theme- + $text_color
-        )
-    );
-    @include set(
-        (
-            $state + -background-opacity: $background_opacity,
-            $state + -text-opacity: $text_opacity
-        )
-    );
+    @include text_color($text_color, $state, $text_opacity);
+    @include alias(($state + -background-color: theme- + $name));
+    @include set(($state + -background-opacity: $background_opacity));
 }

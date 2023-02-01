@@ -7,18 +7,25 @@ macro_rules! dbg {
 }
 
 macro_rules! classes {
-    (#insert $classes:ident, $lit:literal) => {
-            $classes.push_str(concat!($lit, " "))
+    (@insert $classes:ident,) => {};
+    (@insert $classes:ident, $lit:literal $(, $($tts:tt)*)?) => {
+        $classes.push_str(concat!($lit, " "));
+        classes!(@insert $classes, $($($tts)*)?);
     };
-    (#insert $classes:ident, $ident:ident) => {
-        if $ident {
-            $classes.push_str(concat!(stringify!($ident), " "))
+    (@insert $classes:ident, $string:ident $(, $($tts:tt)*)?) => {
+        $classes.push_str(&format!("{} ", $string));
+        classes!(@insert $classes, $($($tts)*)?);
+    };
+    (@insert $classes:ident, $bool:ident? $(, $($tts:tt)*)?) => {
+        if $bool {
+            $classes.push_str(concat!(stringify!($bool), " "));
         }
+        classes!(@insert $classes, $($($tts)*)?);
     };
-    [$($class:tt),*$(,)?] => {
+    [$($tts:tt)*] => {
         {
             let mut classes = String::new();
-            $(classes!(#insert classes, $class);)*
+            classes!(@insert classes, $($tts)*);
             classes
         }
     };

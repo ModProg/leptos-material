@@ -30,6 +30,20 @@ $weight_regular: 400;
     @include values($family, $weight_medium, 1.25rem, 0.875rem, 0.006rem);
 }
 
+$small_body_line_height: 1rem;
+
+@mixin small_body {
+    @include values(
+        $family,
+        $weight_regular,
+        $small_body_line_height,
+        0.75rem,
+        0.025rem
+    );
+}
 @mixin medium_body {
     @include values($family, $weight_regular, 1.25rem, 0.875rem, 0.016rem);
+}
+@mixin large_body {
+    @include values($family, $weight_regular, 1.5rem, 1rem, 0.031rem);
 }
