@@ -1,7 +1,7 @@
 use derive_more::Display;
 use leptos::*;
 
-use crate::Children;
+use crate::*;
 
 #[derive(Display, Default)]
 pub enum ButtonKind {
@@ -22,11 +22,13 @@ pub enum ButtonKind {
 pub fn Button(
     cx: Scope,
     kind: ButtonKind,
-    #[prop(optional)] disabled: bool,
+    #[prop(optional, into, default=MaybeSignal::Static(false))] disabled: MaybeSignal<bool>,
+    #[prop(optional, into)] icon: Option<String>,
     #[prop(optional)] children: Option<Children>,
 ) -> impl IntoView {
     view! {cx,
         <button class=kind.to_string() disabled=disabled>
+            {icon.map(|i|view! {cx, <Icon icon=i/>})}
             { children.map(|c|c(cx)) }
         </button>
     }

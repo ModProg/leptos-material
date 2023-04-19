@@ -1,7 +1,10 @@
 @use 'util' as *;
 
-$family: Roboto, sans-serif;
-$brand: $family;
+$plain: 'Roboto Flex', sans-serif;
+$outlined: 'Material Symbols Outlined';
+$rounded: 'Material Symbols Rounded';
+$sharp: 'Material Symbols Sharp';
+$brand: $plain;
 $weight_bold: 700;
 $weight_medium: 500;
 $weight_regular: 400;
@@ -19,7 +22,7 @@ $weight_regular: 400;
 }
 
 @mixin medium_title {
-    @include values($family, $weight_medium, 1.5rem, 1rem, 0.009rem);
+    @include values($plain, $weight_medium, 1.5rem, 1rem, 0.009rem);
 }
 
 @mixin medium_headline {
@@ -27,14 +30,14 @@ $weight_regular: 400;
 }
 
 @mixin large_label {
-    @include values($family, $weight_medium, 1.25rem, 0.875rem, 0.006rem);
+    @include values($plain, $weight_medium, 1.25rem, 0.875rem, 0.006rem);
 }
 
 $small_body_line_height: 1rem;
 
 @mixin small_body {
     @include values(
-        $family,
+        $plain,
         $weight_regular,
         $small_body_line_height,
         0.75rem,
@@ -42,8 +45,8 @@ $small_body_line_height: 1rem;
     );
 }
 @mixin medium_body {
-    @include values($family, $weight_regular, 1.25rem, 0.875rem, 0.016rem);
+    @include values($plain, $weight_regular, 1.25rem, 0.875rem, 0.016rem);
 }
 @mixin large_body {
-    @include values($family, $weight_regular, 1.5rem, 1rem, 0.031rem);
+    @include values($plain, $weight_regular, 1.5rem, 1rem, 0.031rem);
 }

@@ -1,20 +1,28 @@
-use derive_more::Display;
+use leptos::ev::Event;
 use leptos::*;
 
-use crate::Children;
-
 #[component]
-pub fn Textfield(
+pub fn TextField(
     cx: Scope,
     #[prop(optional)] filled: bool,
     #[prop(optional)] disabled: bool,
     #[prop(optional, into)] label: Option<String>,
-    #[prop(optional)] children: Option<Children>,
+    #[prop(optional)] value: Option<RwSignal<String>>,
 ) -> impl IntoView {
-    let input = view! {cx,
-        <input class=classes![filled?] disabled=disabled>
-            { children.map(|c|c(cx)) }
-        </input>
+    let input = if let Some(value) = value {
+        log!("hi");
+        view! {cx,
+            <input
+                class:filled=filled
+                disabled=disabled
+                prop:value={value}
+                on:input=move |ev: Event| {log!("hi"); value.set(event_target_value(&ev))}
+            />
+        }
+    } else {
+        view! {cx,
+            <input class:filled=filled disabled=disabled/>
+        }
     };
     if let Some(label) = label {
         view! {cx,
@@ -25,11 +33,6 @@ pub fn Textfield(
         }
         .into_any()
     } else {
-        view! {cx,
-            <div class="pseudo-label">
-                {input}
-            </div>
-        }
-        .into_any()
+        input.into_any()
     }
 }

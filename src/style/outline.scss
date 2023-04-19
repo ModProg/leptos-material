@@ -1,8 +1,12 @@
 @use 'util' as *;
 
+$rounded_l: 12px;
+$rounded_s: 4px;
+
+
 @mixin outlined {
-    outline-width: 1px;
-    outline-style: solid;
+    border-width: 1px;
+    border-style: solid;
 }
 
 @mixin color(

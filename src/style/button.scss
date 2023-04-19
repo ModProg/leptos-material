@@ -8,14 +8,12 @@
 
 $height: 40px;
 $min_width: 64px;
-$icon_gap: 8px;
 $text_padding: 24px;
 $icon_padding: 16px;
 
 label {
     @include input.sizing;
     input + span {
-
     }
 }
 
@@ -25,6 +23,7 @@ button,
     @include tint.state;
     @include input.shared($height, $text_padding, $icon_padding);
 
+    min-inline-size: max-content;
 
     // When we have ripple, restore active opacity to 12%
     @include set(
@@ -32,6 +31,7 @@ button,
             hover-state-opacity: 8%,
             focus-state-opacity: 12%,
             active-state-opacity: 20%,
+            icon-size: 18px,
         )
     );
 
@@ -65,6 +65,10 @@ button,
 
     .ripple {
         z-index: -1;
+    }
+
+    .icon:first-child {
+        margin-inline-start: calc($icon_padding - $text_padding);
     }
 
     &.elevated,

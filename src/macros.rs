@@ -1,10 +1,10 @@
-macro_rules! dbg {
-    ($expr:expr) => {{
-        let expr = $expr;
-        log!(concat!(stringify!($expr), " = {:?}"), expr);
-        expr
-    }};
-}
+// macro_rules! dbg {
+//     ($expr:expr) => {{
+//         let expr = $expr;
+//         log!(concat!(stringify!($expr), " = {:?}"), expr);
+//         expr
+//     }};
+// }
 
 macro_rules! classes {
     (@insert $classes:ident,) => {};
@@ -16,9 +16,9 @@ macro_rules! classes {
         $classes.push_str(&format!("{} ", $string));
         classes!(@insert $classes, $($($tts)*)?);
     };
-    (@insert $classes:ident, $bool:ident? $(, $($tts:tt)*)?) => {
-        if $bool {
-            $classes.push_str(concat!(stringify!($bool), " "));
+    (@insert $classes:ident, $option:ident? $(, $($tts:tt)*)?) => {
+        if let Some(option) = $option {
+            $classes.push_str(&format!("{} ", option));
         }
         classes!(@insert $classes, $($($tts)*)?);
     };

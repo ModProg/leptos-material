@@ -4,7 +4,7 @@
 @use 'util' as *;
 
 .card {
-    border-radius: 12px;
+    border-radius: outline.$rounded_l;
     padding: 16px;
     z-index: 0; // Place content on top of elevation and ripple
     flex: 1;

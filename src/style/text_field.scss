@@ -1,15 +1,18 @@
 @use 'util' as *;
 @use 'font';
 @use 'input';
+@use 'outline';
 
 $height: 56px;
 $text_padding: 16px;
 $block_padding: 8px;
 $icon_padding: 12px;
 
-label,
-.pseudo-label {
+label {
     @include input.sizing;
+
+    inline-size: calc(100% - 2 * $text_padding);
+
     input + span {
         @include font.small_body;
         @include text_color(on-surface-variant);
@@ -21,11 +24,11 @@ label,
     input:focus + span {
         @include alias(text-color, focus-text-color);
     }
+    padding-inline: $text_padding;
 
-}
-
-label {
     input {
+        margin-inline: -$text_padding;
+        inline-size: calc(100% + 2 * $text_padding);
         padding-top: calc($block_padding + font.$small_body_line_height);
     }
 }
@@ -50,16 +53,17 @@ input {
     // - Placeholder/prefix/suffix: on-surface-variant
 
     &.filled {
+        // TODO active-indicator should be 1px if not active
         @include set(
             (
-                active-indicator: 1px,
+                active-indicator: 2px,
                 normal-outline-color: theme(on-surface-variant),
                 focus-outline-color: theme(primary),
             )
         );
         border-color: RGB(md(outline-color));
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
+        border-top-left-radius: outline.$rounded_s;
+        border-top-right-radius: outline.$rounded_s;
         border-bottom-style: solid;
         border-bottom-width: md(active-indicator);
         // border-bottom-color: theme_color(on-surface-variant);
@@ -68,7 +72,7 @@ input {
 
         &:focus-visible {
             @include set(active-indicator, 2px);
-            outline: none;
+            // outline: none;
         }
     }
 }

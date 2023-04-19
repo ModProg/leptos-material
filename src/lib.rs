@@ -32,11 +32,70 @@ mod button;
 pub use button::*;
 mod text_field;
 pub use text_field::*;
+mod icon;
+pub use icon::*;
 
-type Children = Box<dyn FnOnce(Scope) -> Fragment>;
+// type Children = Box<dyn FnOnce(Scope) -> Fragment>;
 
 fn optional(cx: Scope, children: Option<Children>) -> impl IntoView {
     children.map(|c| c(cx))
+}
+
+pub enum Font {
+    Family(String),
+    Path(String),
+}
+
+#[derive(Default)]
+pub enum IconFonts {
+    #[default]
+    MaterialSymbols,
+    Single(Font),
+    Multiple {
+        outlined: Font,
+        rounded: Font,
+        sharp: Font,
+    },
+}
+
+/// Currently only the defaults i.e. Roboto and Material Icons are supported.
+///
+/// The path is currently expected to contain:
+/// - MaterialSymbolsOutlined[FILL,GRAD,opsz,wght].woff2
+/// - MaterialSymbolsRounded[FILL,GRAD,opsz,wght].woff2
+/// - MaterialSymbolsSharp[FILL,GRAD,opsz,wght].woff2
+/// - RobotoFlex-VariableFont_GRAD,XTRA,YOPQ,YTAS,YTDE,YTFI,YTLC,YTUC,opsz,slnt,
+///   wdth,wght.ttf
+#[component]
+pub fn MaterialFonts(cx: Scope, #[prop(into)] path: String) -> impl IntoView {
+    view! {
+                                                    cx,
+                                                    <style>
+                                                        {format!(r"@font-face {{
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  src: url({path}/MaterialSymbolsOutlined[FILL\,GRAD\,opsz\,wght].woff2) format('woff');
+}}
+
+@font-face {{
+  font-family: 'Material Symbols Rounded';
+  font-style: normal;
+  src: url({path}/MaterialSymbolsRounded[FILL\,GRAD\,opsz\,wght].woff2) format('woff');
+}}
+
+@font-face {{
+  font-family: 'Material Symbols Sharp';
+  font-style: normal;
+  src: url({path}/MaterialSymbolsSharp[FILL\,GRAD\,opsz\,wght].woff2) format('woff');
+}}
+
+@font-face {{
+  font-family: 'Roboto Flex';
+  src: url({path}/RobotoFlex-VariableFont_GRAD\,XTRA\,YOPQ\,YTAS\,YTDE\,YTFI\,YTLC\,YTUC\,opsz\,slnt\,wdth\,wght.ttf);
+}}
+")}
+                                                    </style>
+                                                }
 }
 
 #[component]

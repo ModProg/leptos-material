@@ -15,12 +15,16 @@
     @include alias(
         (
             tint: theme-primary,
+            font-icon: font-icon-outlined
         )
     );
     @include set(
         (
             padding: 16px,
             color: inherit,
+            font-icon-outlined: font.$outlined,
+            font-icon-rounded: font.$rounded,
+            font-icon-sharp: font.$sharp,
         )
     );
 }
@@ -114,9 +118,4 @@ body {
     @include font.medium_body;
     margin: md(padding);
     @include color(background);
-}
-
-@font-face {
-    font-family: Roboto;
-    src: url(public/roboto_flex.ttf);
 }

@@ -1,0 +1,7 @@
+@use 'util' as *;
+@use 'outline';
+
+fieldset {
+    @include outline.outlined;
+    border-radius: outline.$rounded_s;
+}

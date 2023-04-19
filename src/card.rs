@@ -1,7 +1,7 @@
 use derive_more::Display;
 use leptos::*;
 
-use crate::{optional, Children};
+use crate::optional;
 
 #[derive(Display, Default)]
 pub enum CardKind {

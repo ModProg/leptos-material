@@ -1,0 +1,8 @@
+@use 'font';
+@use 'util' as *;
+
+.icon {
+    color: inherit;
+    font-family: md(font-icon);
+    font-size: md(icon-size);
+}
