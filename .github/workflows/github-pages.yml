@@ -34,7 +34,7 @@ jobs:
           targets: wasm32-unknown-unknown
       - name: Install Trunk
         # TODO: replace with 0.17
-        run: cargo install --locked trunk --git https://github.com/thedodd/trunk/commits/master --rev cb691cc625a8a51e93a0c52a822be1bb4f41f827
+        run: cargo install --locked trunk --git https://github.com/thedodd/trunk --rev cb691cc625a8a51e93a0c52a822be1bb4f41f827
       - name: Build Showcase
         working-directory: examples/showcase
         run: trunk build --public-url ${{ github.event.repository.name }}/showcase
